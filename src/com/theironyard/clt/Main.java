@@ -1,5 +1,6 @@
 package com.theironyard.clt;
 
+import jodd.json.JsonParser;
 import jodd.json.JsonSerializer;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-	// write your code here
+
         Firearms boom = new Firearms();
         Scanner scanner = new Scanner(System.in);
         System.out.println("thank you for choosing the Firearms Registration System.");
@@ -31,6 +32,14 @@ public class Main {
         FileWriter fw = new FileWriter(file);
         fw.write(json);
         fw.close();
+
+        Scanner s = new Scanner(file);
+        s.useDelimiter("\\Z");
+        String contents = s.next();
+        JsonParser parser = new JsonParser();
+        Firearms boom2 = parser.parse(contents, Firearms.class);
+
+        System.out.println(boom2);
 
     }
 }
