@@ -7,6 +7,8 @@ But first, enjoy this gif of a little boy interrupting an all-girl jam session w
 
 [maxinterruptus]: http://i.imgur.com/sogmc.gif
 
+Now for your assignment.
+
 # File I/O
 
 ## Description
