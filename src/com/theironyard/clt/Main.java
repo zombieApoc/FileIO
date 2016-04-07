@@ -12,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+
         Firearms boom = new Firearms();
         Scanner scanner = new Scanner(System.in);
         System.out.println("thank you for choosing the Firearms Registration System.");
@@ -27,19 +28,23 @@ public class Main {
         boom.year = scanner.nextInt();
 
         File file = new File("Guns.json");
-        JsonSerializer serializer = new JsonSerializer();
-        String json = serializer.serialize(boom);
-        FileWriter fw = new FileWriter(file);
-        fw.write(json);
-        fw.close();
+        if (file == null) {
+            JsonSerializer serializer = new JsonSerializer();
+            String json = serializer.serialize(boom);
+            FileWriter fw = new FileWriter(file);
+            fw.write(json);
+            fw.close();
+        }else {
+            System.out.println("Sorry but the file is full.");
+        }
 
         Scanner s = new Scanner(file);
         s.useDelimiter("\\Z");
         String contents = s.next();
         JsonParser parser = new JsonParser();
-        Firearms boom2 = parser.parse(contents, Firearms.class);
+        boom = parser.parse(contents, Firearms.class);
 
-        System.out.println(boom2);
+        System.out.println(boom);
 
     }
 }
